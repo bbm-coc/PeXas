@@ -139,8 +139,18 @@ fun Dashboard(nav: NavHostController, vm: AccountingViewModel, search: String) {
         }
         item {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-                ActionCard("Sales", "Add / Modify / List", Icons.Default.ReceiptLong) { nav.navigate("sales") }
-                ActionCard("Purchase", "Order / Bill / Return", Icons.Default.ShoppingCart) { nav.navigate("purchase") }
+                ActionCard(
+                    "Sales",
+                    "Add / Modify / List",
+                    Icons.Default.ReceiptLong,
+                    modifier = Modifier.weight(1f)
+                ) { nav.navigate("sales") }
+                ActionCard(
+                    "Purchase",
+                    "Order / Bill / Return",
+                    Icons.Default.ShoppingCart,
+                    modifier = Modifier.weight(1f)
+                ) { nav.navigate("purchase") }
             }
         }
         item { SectionTitle("Account Books") }
@@ -187,8 +197,14 @@ fun KpiCard(title: String, value: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ActionCard(title: String, subtitle: String, icon: androidx.compose.ui.graphics.vector.ImageVector, onClick: () -> Unit) {
-    Card(onClick = onClick, modifier = Modifier.weight(1f), shape = RoundedCornerShape(14.dp)) {
+fun ActionCard(
+    title: String,
+    subtitle: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Card(onClick = onClick, modifier = modifier, shape = RoundedCornerShape(14.dp)) {
         Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(icon, null, modifier = Modifier.size(30.dp))
             Spacer(Modifier.width(10.dp))
